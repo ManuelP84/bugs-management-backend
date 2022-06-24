@@ -33,7 +33,7 @@ public class CreateProjectUseCaseTest {
 
     @Test
     void createProjectTest(){
-        //Set a project
+        //Set a projectDTO
         ProjectDTO projectDTO = new ProjectDTO();
         projectDTO.setId("g6f4536bv");
         projectDTO.setProjectId(1234);
