@@ -33,16 +33,6 @@ public class CreateProjectUseCaseTest {
 
     @Test
     void createProjectTest(){
-        //Set a projectDTO
-        ProjectDTO projectDTO = new ProjectDTO();
-        projectDTO.setId("g6f4536bv");
-        projectDTO.setProjectId(1234);
-        projectDTO.setName("Store management system");
-        projectDTO.setStartDate("06-06-2022");
-        projectDTO.setEndDate("05-07-2022");
-        projectDTO.setLeaderEmails(new HashSet<>());
-        projectDTO.setDeveloperEmails(new HashSet<>());
-        projectDTO.setDescription("Development from a store management system");
 
         //Set a project
         Project project = new Project();
