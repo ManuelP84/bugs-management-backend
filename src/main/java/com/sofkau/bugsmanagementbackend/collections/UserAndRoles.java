@@ -19,14 +19,4 @@ public class UserAndRoles {
     private String userToken;
     private String userRol;
 
-
-
-
-
-
-
-
-
-
-
 }
