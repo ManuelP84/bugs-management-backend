@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
-public class CreateUserUseCase implements Function<UserAndRolesDTO, Mono<UserAndRolesDTO>> {
+public class UpdateUserUseCase implements Function<UserAndRolesDTO, Mono<UserAndRolesDTO>> {
 
     private final IUserAndRolesRepository repository;
     private final UserAndRolesMapper mapper;
