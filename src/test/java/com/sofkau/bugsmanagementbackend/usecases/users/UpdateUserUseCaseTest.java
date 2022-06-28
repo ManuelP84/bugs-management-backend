@@ -11,11 +11,12 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-public class CreateUserUseCaseTest {
+class UpdateUserUseCaseTest {
 
     @SpyBean
-    private CreateUserUseCase useCase;
+    private UpdateUserUseCase useCase;
 
     @MockBean
     private IUserAndRolesRepository repository;
@@ -47,4 +48,5 @@ public class CreateUserUseCaseTest {
                 .expectNext(userDto)
                 .verifyComplete();
     }
+
 }
