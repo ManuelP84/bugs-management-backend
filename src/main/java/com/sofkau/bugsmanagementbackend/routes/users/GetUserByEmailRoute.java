@@ -11,7 +11,6 @@ import reactor.core.publisher.Mono;
 
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 @Component
 public class GetUserByEmailRoute {
