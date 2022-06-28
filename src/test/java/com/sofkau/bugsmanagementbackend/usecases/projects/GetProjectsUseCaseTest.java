@@ -41,6 +41,7 @@ public class GetProjectsUseCaseTest {
         project1.setName("Store management system");
         project1.setStartDate("06-06-2022");
         project1.setEndDate("05-07-2022");
+        project1.setState("created");
         project1.setLeaderEmails(new HashSet<>());
         project1.setDeveloperEmails(new HashSet<>());
         project1.setDescription("Development from a store management system");
@@ -52,6 +53,7 @@ public class GetProjectsUseCaseTest {
         project2.setName("Blog web page");
         project2.setStartDate("06-07-2022");
         project2.setEndDate("02-09-2022");
+        project2.setState("created");
         project2.setLeaderEmails(new HashSet<>());
         project2.setDeveloperEmails(new HashSet<>());
         project2.setDescription("Development from a blog web page");

@@ -41,6 +41,7 @@ public class CreateProjectUseCaseTest {
         project.setName("Store management system");
         project.setStartDate("06-06-2022");
         project.setEndDate("05-07-2022");
+        project.setState("created");
         project.setLeaderEmails(new HashSet<>());
         project.setDeveloperEmails(new HashSet<>());
         project.setDescription("Development from a store management system");

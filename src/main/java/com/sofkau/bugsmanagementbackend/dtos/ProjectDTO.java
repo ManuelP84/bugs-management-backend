@@ -17,6 +17,8 @@ public class ProjectDTO {
 
     private String endDate;
 
+    private String state;
+
     private Set<String> leaderEmails;
 
     private Set<String> developerEmails;
