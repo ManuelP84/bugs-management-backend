@@ -3,6 +3,7 @@ package com.sofkau.bugsmanagementbackend.usecases.bugs;
 import com.sofkau.bugsmanagementbackend.collections.Bugs;
 import com.sofkau.bugsmanagementbackend.collections.UrlType;
 import com.sofkau.bugsmanagementbackend.dtos.BugsDTO;
+import com.sofkau.bugsmanagementbackend.mapper.BugsMapper;
 import com.sofkau.bugsmanagementbackend.repository.IBugsRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -15,18 +16,18 @@ import reactor.test.StepVerifier;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @SpringBootTest
-public class CreateBugUseCaseTest {
+class UpdateBugUseCaseTest {
 
     @SpyBean
-    private CreateBugUseCase useCase;
+    private UpdateBugUseCase useCase;
 
     @MockBean
     private IBugsRepository repository;
 
     @Test
-    void CreateBugTest (){
-
+    void UpdateBugTest (){
         UrlType url1 = new UrlType();
         url1.setUrl("http://url.test1.com");
         url1.setFileName("file name 1");
@@ -67,7 +68,7 @@ public class CreateBugUseCaseTest {
         bugDTO.setDeveloperNotes("Developer bug notes");
 
         Bugs bug = new Bugs();
-        bug.setBugId(bugDTO.getId());
+        bug.setId(bugDTO.getId());
         bug.setBugId(bugDTO.getBugId());
         bug.setTitle(bugDTO.getTitle());
         bug.setDescription(bugDTO.getDescription());
@@ -97,4 +98,5 @@ public class CreateBugUseCaseTest {
                 .expectNext(bugDTO)
                 .verifyComplete();
     }
+
 }
