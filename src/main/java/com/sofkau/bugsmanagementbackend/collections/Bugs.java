@@ -22,6 +22,7 @@ public class Bugs {
     private String date;
     private String testerEmail;
     private String taskId;
+    private String projectId;
     private String testerNotes;
     private String lifecycle;
     private List<UrlType> urls;
