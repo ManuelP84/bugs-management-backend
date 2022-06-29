@@ -3,9 +3,15 @@ package com.sofkau.bugsmanagementbackend.usecases.bugs;
 import com.sofkau.bugsmanagementbackend.collections.Bugs;
 import com.sofkau.bugsmanagementbackend.collections.UrlType;
 import com.sofkau.bugsmanagementbackend.dtos.BugsDTO;
+import com.sofkau.bugsmanagementbackend.mapper.BugsMapper;
+import com.sofkau.bugsmanagementbackend.mapper.ProjectMapper;
 import com.sofkau.bugsmanagementbackend.repository.IBugsRepository;
+import com.sofkau.bugsmanagementbackend.usecases.projects.CreateLeaderUseCase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -18,11 +24,19 @@ import java.util.List;
 @SpringBootTest
 public class CreateBugUseCaseTest {
 
-    @SpyBean
+
     private CreateBugUseCase useCase;
 
-    @MockBean
+    @Autowired
+    private BugsMapper mapper;
+
+    @Mock
     private IBugsRepository repository;
+
+    @BeforeEach
+    void setUp(){
+        useCase = new CreateBugUseCase(repository, mapper);
+    }
 
     @Test
     void CreateBugTest (){
@@ -67,7 +81,7 @@ public class CreateBugUseCaseTest {
         bugDTO.setDeveloperNotes("Developer bug notes");
 
         Bugs bug = new Bugs();
-        bug.setBugId(bugDTO.getId());
+        bug.setId(bugDTO.getId());
         bug.setBugId(bugDTO.getBugId());
         bug.setTitle(bugDTO.getTitle());
         bug.setDescription(bugDTO.getDescription());
