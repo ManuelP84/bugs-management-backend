@@ -1,8 +1,7 @@
 package com.sofkau.bugsmanagementbackend.routes.tasks;
 
 import com.sofkau.bugsmanagementbackend.dtos.TaskDTO;
-import com.sofkau.bugsmanagementbackend.dtos.UserAndRolesDTO;
-import com.sofkau.bugsmanagementbackend.usecases.tasks.CreateTaskUseCase;
+import com.sofkau.bugsmanagementbackend.usecases.tasks.UpdateTaskUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -15,12 +14,12 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class CreateTaskRoute {
+public class UpdateTaskRoute {
 
     @Bean
-    public RouterFunction<ServerResponse> createTaskRouter(CreateTaskUseCase useCase){
+    public RouterFunction<ServerResponse> updateTaskRouter(UpdateTaskUseCase useCase){
         return route(
-                POST("/v1/api/save/task").and(accept(MediaType.APPLICATION_JSON)),
+                POST("/v1/api/update/task").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(TaskDTO.class)
                         .flatMap(taskDto -> useCase.apply(taskDto))
                         .flatMap(taskDto -> ServerResponse.status(HttpStatus.CREATED)

@@ -17,17 +17,18 @@ import reactor.test.StepVerifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-public class CreateTaskUseCaseTest {
+class DeleteTaskByIdUseCaseTest {
 
     @SpyBean
-    private CreateTaskUseCase useCase;
+    private DeleteTaskByIdUseCase useCase;
 
     @MockBean
     private ITaskRepository repository;
 
     @Test
-    void CreateTaskTest (){
+    void deleteTaskByIdTest () {
         LabelType label1 = new LabelType();
         label1.setLabel("Task label 1");
 
@@ -98,13 +99,12 @@ public class CreateTaskUseCaseTest {
         task.setState(taskDTO.getState());
         task.setDeveloperEmails(taskDTO.getDeveloperEmails());
 
-        Mockito.when(repository.save(task)).thenReturn(Mono.just(task));
+        Mockito.when(repository.deleteById(task.getId())).thenReturn(Mono.empty());
 
-        var resultMono = useCase.apply(taskDTO);
+        var result = useCase.apply("001");
 
         StepVerifier
-                .create(resultMono)
-                .expectNext(taskDTO)
-                .verifyComplete();
+                .create(result)
+                .assertNext(response -> response.equals(null));
     }
 }

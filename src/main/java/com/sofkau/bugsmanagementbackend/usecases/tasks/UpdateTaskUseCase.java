@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-public class CreateTaskUseCase implements Function<TaskDTO, Mono<TaskDTO>> {
+public class UpdateTaskUseCase implements Function<TaskDTO, Mono<TaskDTO>> {
 
     private final ITaskRepository repository;
     private final TaskMapper mapper;

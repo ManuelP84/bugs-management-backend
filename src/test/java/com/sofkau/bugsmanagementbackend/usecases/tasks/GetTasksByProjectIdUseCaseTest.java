@@ -11,23 +11,25 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-public class CreateTaskUseCaseTest {
+class GetTasksByProjectIdUseCaseTest {
 
     @SpyBean
-    private CreateTaskUseCase useCase;
+    private GetTasksByProjectIdUseCase useCase;
 
     @MockBean
     private ITaskRepository repository;
 
     @Test
-    void CreateTaskTest (){
+    void GetTaskByIdTest (){
         LabelType label1 = new LabelType();
         label1.setLabel("Task label 1");
 
@@ -84,6 +86,20 @@ public class CreateTaskUseCaseTest {
         taskDTO.setState("created");
         taskDTO.setDeveloperEmails(emails);
 
+        TaskDTO taskDTO1 = new TaskDTO();
+        taskDTO1.setId("002");
+        taskDTO1.setProjectId("001");
+        taskDTO1.setTaskId("001-2");
+        taskDTO1.setProjectName("Project name from task");
+        taskDTO1.setName("Task name1");
+        taskDTO1.setDate("2022-06-28");
+        taskDTO1.setEndDate("2022-07-28");
+        taskDTO1.setLabels(labels);
+        taskDTO1.setDescription("Task description1");
+        taskDTO1.setUrls(urls);
+        taskDTO1.setState("created");
+        taskDTO1.setDeveloperEmails(emails);
+
         Task task = new Task();
         task.setId(taskDTO.getId());
         task.setProjectId(taskDTO.getProjectId());
@@ -98,13 +114,29 @@ public class CreateTaskUseCaseTest {
         task.setState(taskDTO.getState());
         task.setDeveloperEmails(taskDTO.getDeveloperEmails());
 
-        Mockito.when(repository.save(task)).thenReturn(Mono.just(task));
+        Task task1 = new Task();
+        task1.setId(taskDTO1.getId());
+        task1.setProjectId(taskDTO1.getProjectId());
+        task1.setTaskId(taskDTO1.getTaskId());
+        task1.setProjectName(taskDTO1.getProjectName());
+        task1.setName(taskDTO1.getName());
+        task1.setDate(taskDTO1.getDate());
+        task1.setEndDate(taskDTO1.getEndDate());
+        task1.setLabels(taskDTO1.getLabels());
+        task1.setDescription(taskDTO1.getDescription());
+        task1.setUrls(taskDTO1.getUrls());
+        task1.setState(taskDTO1.getState());
+        task1.setDeveloperEmails(taskDTO1.getDeveloperEmails());
 
-        var resultMono = useCase.apply(taskDTO);
+        Mockito.when(repository.findAllByProjectId(taskDTO.getProjectId())).thenReturn(Flux.just(task, task1));
+
+        var resultFlux = useCase.apply("001");
 
         StepVerifier
-                .create(resultMono)
+                .create(resultFlux)
                 .expectNext(taskDTO)
+                .expectNext(taskDTO1)
                 .verifyComplete();
     }
+
 }

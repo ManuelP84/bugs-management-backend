@@ -1,7 +1,5 @@
 package com.sofkau.bugsmanagementbackend.usecases.tasks;
 
-import com.sofkau.bugsmanagementbackend.dtos.TaskDTO;
-import com.sofkau.bugsmanagementbackend.mapper.TaskMapper;
 import com.sofkau.bugsmanagementbackend.repository.ITaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,15 +9,14 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-public class CreateTaskUseCase implements Function<TaskDTO, Mono<TaskDTO>> {
+public class DeleteTaskByIdUseCase implements Function<String, Mono<Void>> {
 
     private final ITaskRepository repository;
-    private final TaskMapper mapper;
+
 
     @Override
-    public Mono<TaskDTO> apply(TaskDTO taskDTO){
+    public Mono<Void> apply(String id) {
         return repository
-                .save(mapper.convertDtoToEntity().apply(taskDTO))
-                .map(task -> mapper.convertEntityToDto().apply(task));
+                .deleteById(id);
     }
 }

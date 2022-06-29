@@ -17,11 +17,12 @@ import reactor.test.StepVerifier;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @SpringBootTest
-public class CreateTaskUseCaseTest {
+public class UpdateTaskUseCaseTest {
 
     @SpyBean
-    private CreateTaskUseCase useCase;
+    private UpdateTaskUseCase useCase;
 
     @MockBean
     private ITaskRepository repository;

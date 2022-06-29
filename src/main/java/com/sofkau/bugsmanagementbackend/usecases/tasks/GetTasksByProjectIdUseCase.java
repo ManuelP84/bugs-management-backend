@@ -5,21 +5,23 @@ import com.sofkau.bugsmanagementbackend.mapper.TaskMapper;
 import com.sofkau.bugsmanagementbackend.repository.ITaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-public class CreateTaskUseCase implements Function<TaskDTO, Mono<TaskDTO>> {
+public class GetTasksByProjectIdUseCase implements Function<String, Flux<TaskDTO>> {
 
     private final ITaskRepository repository;
     private final TaskMapper mapper;
 
     @Override
-    public Mono<TaskDTO> apply(TaskDTO taskDTO){
+    public Flux<TaskDTO> apply(String projectId){
         return repository
-                .save(mapper.convertDtoToEntity().apply(taskDTO))
+                .findAllByProjectId(projectId)
                 .map(task -> mapper.convertEntityToDto().apply(task));
     }
 }
