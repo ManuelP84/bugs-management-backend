@@ -1,4 +1,4 @@
-package com.sofkau.bugsmanagementbackend.routes.tasks;
+package com.sofkau.bugsmanagementbackend.routes.users;
 
 import com.sofkau.bugsmanagementbackend.dtos.UserAndRolesDTO;
 import com.sofkau.bugsmanagementbackend.usecases.users.GetAllUsersUseCase;
