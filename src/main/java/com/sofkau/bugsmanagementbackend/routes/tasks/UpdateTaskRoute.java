@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.PUT;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
@@ -19,7 +19,7 @@ public class UpdateTaskRoute {
     @Bean
     public RouterFunction<ServerResponse> updateTaskRouter(UpdateTaskUseCase useCase){
         return route(
-                POST("/v1/api/update/task").and(accept(MediaType.APPLICATION_JSON)),
+                PUT("/v1/api/update/task").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(TaskDTO.class)
                         .flatMap(taskDto -> useCase.apply(taskDto))
                         .flatMap(taskDto -> ServerResponse.status(HttpStatus.CREATED)
