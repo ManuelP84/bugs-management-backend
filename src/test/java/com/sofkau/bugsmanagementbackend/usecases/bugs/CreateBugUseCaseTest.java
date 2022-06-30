@@ -67,7 +67,7 @@ public class CreateBugUseCaseTest {
         bugDTO.setDeveloperNotes("Developer bug notes");
 
         Bugs bug = new Bugs();
-        bug.setBugId(bugDTO.getId());
+        bug.setId(bugDTO.getId());
         bug.setBugId(bugDTO.getBugId());
         bug.setTitle(bugDTO.getTitle());
         bug.setDescription(bugDTO.getDescription());

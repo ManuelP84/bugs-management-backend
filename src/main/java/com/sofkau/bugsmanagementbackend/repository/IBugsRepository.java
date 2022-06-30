@@ -13,4 +13,6 @@ public interface IBugsRepository extends ReactiveMongoRepository<Bugs, String> {
     Mono<Bugs> findByBugId (String id);
 
     Mono<Void> deleteByBugId (String id);
+
+    Flux<Bugs> findAllByProjectId (String projectId);
 }
